@@ -11,6 +11,8 @@ int hash(std::string key, int m) {
         if(key[i] == 'a' and key[i] == 'z') out += int(key[i] - 'a');
         else if(key[i] == 'A' and key[i] == 'Z') out += int(key[i] - 'z');
         else out += key[i];
+        
+        out *= 10;
     }
     return (out % m);
 }
