@@ -10,6 +10,7 @@ using namespace std;
 
 
 vector<bool> Bloom;	
+vector<string> S, T;
 int fp; //Num. Falsos Positivos
 
 //Funcion de hash con el metodo de la division
@@ -70,8 +71,16 @@ void hashTests(string &key, int &m) {
 	int h2 = hash_f2(key, m);
 	int h3 = hash_f3(key, m);
 
-	if (Bloom[h1] == 1 or Bloom[h2] == 1 or Bloom[h3] == 1) 
-		 cout << "Yes - ";
+	if (Bloom[h1] == 1 or Bloom[h2] == 1 or Bloom[h3] == 1) {
+		for (int i = 0; i != S.size(); ++i) {
+			if (S[i] == key){
+				cout << "Yes - ";
+				++fp;
+				break;	
+			}
+		}
+		cout << "FP! - ";
+	}
 	else cout << "No  - ";
 
 	cout << h1 << ", "  << h2 << ", "  << h3 << endl;
@@ -96,7 +105,7 @@ int main () {
 	cout << "Seguidamente, escribe el tamaño y luego cada clave del primer conjunto:" << endl;
 	int n;		cin >> n;	//Number Keys
 	Bloom = vector<bool> (m, 0);
-	vector<string> S(n);
+	S = vector<string> (n);
 	
 	for (int i = 0; i != n; ++i) {	
 		cin >> S[i];
@@ -106,15 +115,15 @@ int main () {
 	cout << "Seguidamente, escribe el tamaño y luego cada clave del segundo (!) conjunto: " << endl;
 	
 	int k; cin >> k;
-	vector<string> T(k);
+	T = vector<string> (k);
 	for (int i = 0; i != k; ++i) {	
 		cin >> T[i];
 		hashTests(T[i], m);
 	}
 
-	cout << "Bloom filter result (POST): ";
+	cout << "Bloom filter result: ";
 	for (int i = 0; i != m; ++i) {	
-		cout << Bloom[i] << "";
+		cout << Bloom[i];
 	}
 	cout << endl;
 	
