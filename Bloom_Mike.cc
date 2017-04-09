@@ -72,14 +72,15 @@ void hashTests(string &key, int &m) {
 	int h3 = hash_f3(key, m);
 
 	if (Bloom[h1] == 1 or Bloom[h2] == 1 or Bloom[h3] == 1) {
-		for (int i = 0; i != S.size(); ++i) {
+		bool falsoPos = true;
+		for (int i = 0; i != S.size() and falsoPos; ++i) {
 			if (S[i] == key){
 				cout << "Yes - ";
 				++fp;
-				break;	
+				falsoPos = false;	
 			}
 		}
-		cout << "FP! - ";
+		if (falsoPos) cout << "FP! - ";
 	}
 	else cout << "No  - ";
 
@@ -123,7 +124,7 @@ int main () {
 
 	cout << "Bloom filter result: ";
 	for (int i = 0; i != m; ++i) {	
-		cout << Bloom[i];
+		cout << Bloom[i]	;
 	}
 	cout << endl;
 	
