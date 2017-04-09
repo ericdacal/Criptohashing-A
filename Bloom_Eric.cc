@@ -4,6 +4,7 @@
 
 #include <iostream>
 #include <string>
+#include <vector>
 
 int hash(std::string key, int m) {
     int out = 0;
@@ -18,13 +19,40 @@ int hash(std::string key, int m) {
 }
 
 
+void insert(std::string key, std::vector<bool>& Bloom_filter) {
+    int pos = hash(key, Bloom_filter.size());
+    Bloom_filter[pos] = true;
+}
+
+bool member(std::string key, std::vector<bool>& Bloom_filter) {
+    int pos = hash(key, Bloom_filter.size());
+    return Bloom_filter[pos];
+}
+
+
 int main () {
 	//Code
-  std::string key;
   int m;
-  std::cout << "Introduce la clave a insertar en el conjunt: " << std::endl;
-  std::cin >> key;
   std::cout << "Introduce el tamaño del filtro de Bloom: " << std::endl;
   std::cin >> m;
-  std::cout << hash(key, m) << std::endl; 
+  std::vector<bool> Bloom_filter (m);
+  while(true) {
+    std::cout << "Escoge una opción:" << std::endl;
+    std::cout << "1. Insert" << std::endl;
+    std::cout << "2. Member" << std::endl;
+    int option;
+    std::cin >> option;
+    if(option == 1) {
+      std::cout << "Introduce la clave ha insertar: " << std::endl;
+      std::string key;
+      std::cin >> key;
+      insert(key, Bloom_filter);
+    }
+    else {
+      std::cout << "Introduce la clave a buscar en el filtro: " << std::endl;
+      std::string key;
+      std::cin >> key;
+      std::cout << member(key, Bloom_filter) << std::endl;
+    }
+  }
 }
