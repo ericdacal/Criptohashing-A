@@ -4,9 +4,13 @@
 
 #include <iostream>
 #include <map>
+#include <string>
+#include "sha1.h"
+#include "sha256.h"
 using namespace std;
 
 
 int main () {
 	//Code
+    cout << sha1("hj3kf") << endl;
 }

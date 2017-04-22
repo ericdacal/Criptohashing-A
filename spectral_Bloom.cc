@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <climits>
 
 
 int hash(std::string &key, int m, int k) {
@@ -22,9 +23,33 @@ int hash(std::string &key, int m, int k) {
 }
 
 
-void BloomInsert(std::string &key, int m, int k, std::vector<bool> &Bloom) {
+
+int num_occurs(std::string item,int m, int k, std::vector<int> &Bloom)
+{
+    int smallest = INT_MAX;
+    for(int i = 0; i < k; i++) {
+        if(Bloom[hash(item,m,k)] < smallest) smallest = Bloom[hash(item,m,k)];
+    }
+    return smallest;
+}
+
+void BloomInsert(std::string &key, int m, int k, std::vector<int> &Bloom) {
     int h = hash(key, m, k);
-	if(not Bloom[h]) Bloom[h] = true;
+	++Bloom[h];
+}
+
+void BloomRemove(std::string &key, int m, int k,std::vector<int> &Bloom) {
+    int h = hash(key, m, k);
+	--Bloom[h];
+}
+
+
+bool contains(std::string item, int m, int k, std::vector<int> &Bloom)
+{
+    for(int i = 0; i < k; i++) {
+        if(Bloom[hash(item, m, k)] = 0) return false;
+    }
+    return true;
 }
 
 
@@ -34,7 +59,7 @@ int main () {
 	
 	std::cout << "Seguidamente, escribe el tamaño del conjunto:" << std::endl;
 	int n;		std::cin >> n;	//Number Keys
-	std::vector<bool> Bloom(m, 0);
+	std::vector<int> Bloom(m, 0);
 	std::vector< std::string > S(n);
     std::cout << "Escribe cuantas funciones de hash deseas:" << std::endl;
     int k;
