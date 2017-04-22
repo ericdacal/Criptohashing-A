@@ -12,18 +12,18 @@ private:
     int filterSize;
     int hashFunctionsNum;
     int keysNum;
+    int maxNumKeys;
     vector <int> primes;
     int a1,a2,b1,b2;
     int prime;
-    int hash1(long long value);
-    int hash2(long long value);
 
 public:
 
-    BloomFilter (int size, int numHash, int numKeys);
+    BloomFilter (int size, int numHash, int numKeys, int maxKeys);
     void addKey(const string& key);
     bool queryKey(const string& key);
     void createTwoHashFunctions();
+    vector <int> transformStringToInt(const string& key);
 
 
 
