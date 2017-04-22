@@ -1,30 +1,9 @@
-#include <iostream>
-#include <vector>
-#include <string>
-using namespace std;
+#include "couting_Bloom.h"
 
-
-
-class spectral_Bloom {
-
+class spectral_Bloom: public couting_Bloom {
 private:
-    vector <int> filter;
-    int filterSize;
-    int hashFunctionsNum;
-    int keysNum;
-    vector <int> primes;
-    int a1,a2,b1,b2;
-    int prime;
-    int hash1(long long value);
-    int hash2(long long value);
-
+    std::vector<int> Bloom_filter; 
 public:
-
-    spectral_Bloom (int size, int numHash, int numKeys);
-    void addKey(const string& key);
-    bool queryKey(const string& key);
-    void createTwoHashFunctions();
-    void remove(const string& key);
-    int num_occurs(const string& key);
-
+     spectral_Bloom(int num_hash, int Bloom_size);
+     int num_occurs(std::string item);
 };

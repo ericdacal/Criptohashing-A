@@ -1,29 +1,10 @@
-#include <iostream>
-#include <vector>
-#include <string>
-using namespace std;
+#include "basic_Bloom.h"
 
-
-
-class couting_Bloom {
-
+class couting_Bloom: public basic_Bloom {
 private:
-    vector <int> filter;
-    int filterSize;
-    int hashFunctionsNum;
-    int keysNum;
-    vector <int> primes;
-    int a1,a2,b1,b2;
-    int prime;
-    int hash1(long long value);
-    int hash2(long long value);
-
+    std::vector<int> Bloom_filter; 
 public:
-
-    couting_Bloom (int size, int numHash, int numKeys);
-    void addKey(const string& key);
-    bool queryKey(const string& key);
-    void createTwoHashFunctions();
-    void remove(const string& key);
-
+     couting_Bloom(int num_hash, int Bloom_size);
+     void insert(std::string key);
+     void remove(std::string key);
 };
