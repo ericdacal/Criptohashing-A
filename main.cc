@@ -8,16 +8,24 @@ using namespace std;
 
 
 int main () {
-    int numFitxers;
+    
+    int filterSize,numHashFunctions, keysNum, maxKeys, numFitxers;
+    cout << "Introdueix el tamany del filtre" << endl;
+    cin >> filterSize;
+    cout << "Introdueix el nombre de funcions de Hash" << endl;
+    cin >> numHashFunctions;
+    
     cout << "Introdueix el nombre de fitxers de test a probar" << endl;
     cin >> numFitxers;
-    int filterSize,numHashFunctions, keysNum, maxKeys;
+    keyGenerator generador(5,5);
+    generador.generateKeys();
+    
     ifstream addFile("claus.txt");
     string line;
     getline(addFile,line);
     istringstream iss(line);
-    iss >> filterSize >> numHashFunctions >> keysNum >> maxKeys;
-    BloomFilter filter (filterSize,numHashFunctions,keysNum, maxKeys);
+    
+    BloomFilter filter (filterSize,numHashFunctions,5, 40);
     string key;
     while (getline(addFile,key)) {
         filter.addKey(key);
