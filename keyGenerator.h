@@ -2,6 +2,7 @@
 #include <cstdlib>
 #include <string>
 #include <vector>
+#include <fstream>
 using namespace std;
 
 class keyGenerator {
@@ -15,7 +16,7 @@ private:
 public:
 	keyGenerator (int numKeys, int keysSize);
 	vector <string> generateKeys();
-
+   
 
 
 };
