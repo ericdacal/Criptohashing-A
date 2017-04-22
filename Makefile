@@ -20,4 +20,4 @@ tar:
 	tar zcvf G01.tar.gz *.cc Makefile 
 
 clean:
-	rm Bloom BloomSHA couting_Bloom
+	rm Bloom BloomSHA couting_Bloom spectral_Bloom
