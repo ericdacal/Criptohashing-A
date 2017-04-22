@@ -4,42 +4,59 @@
 #include <sstream>
 #include "basic_Bloom.h"
 #include "keyGenerator.h"
+#include <map>
 using namespace std;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
 
 int main ()  {
   
-    /*for(int i = 2; i <= 10; ++i) {
+  for (int i = 50; i < 250; i += 50) {
+    for (int j = 0;j < 25;++j) {
+     
+      basic_Bloom filter(j,i,500);
+      for (int k = 2;k <= 10;++k) {
+        string key;
+        string fileName = "claus";
+        map <string,bool> claus;
+        fileName.append(to_string(k)).append(".txt");
+        ifstream addFile(fileName);
+        while (getline(addFile,key)) {
+            filter.insert(key);
+            claus.insert(make_pair(key,true));
+        }
+        for (int l = 0;l < 4;++l) {
+           int perc = l*33;
+           int contFalse = 0;
+           fileName = "test";
+           file.append(to_string(l)).append(perc).append(".txt");
+           ifstream queryFile;
+           queryFile.open(fileName);
+           while (getline(queryFile,key)) {
+             bool member = filter.contains(key);
+             if (member) {
+               if (claus.find(key) != claus.end()) ++contFalse;
+             }
+           }
+           cout << i << "\t" << j << "\t" << k << "\t" << perc
+        }
+      }
+    }
+    
+  } 
+  
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  /*for(int i = 2; i <= 10; ++i) {
       keyGenerator generador(500,i);
       vector <string> keys = generador.generateKeys();
       ofstream fitxer;
@@ -108,8 +125,8 @@ int main ()  {
             
         }
       }
-    }*/
-  } 
+    }
+  } */
 }
       
       
