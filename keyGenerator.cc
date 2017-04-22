@@ -10,7 +10,7 @@ keyGenerator::keyGenerator (int numKeys, int keysSize) {
 
 }
 
-void keyGenerator::generateKeys() {
+vector <string> keyGenerator::generateKeys() {
 	srand(time(NULL));
 	for (int i = 0;i < numKeys;++i) {
 		string key;
@@ -25,10 +25,6 @@ void keyGenerator::generateKeys() {
 		}
 		keysGenerated[i] = key;
 	}
-	ofstream fitxer;
-        fitxer.open("claus.txt",ios::app);
-        for (int i = 0; i < numKeys;++i) {
-            fitxer << keysGenerated[i] << "\n";
-        }
-        fitxer.close();
+	return keysGenerated;
 }
+

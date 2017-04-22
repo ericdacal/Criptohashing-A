@@ -15,8 +15,8 @@ private:
 
 public:
 	keyGenerator (int numKeys, int keysSize);
-	void generateKeys();
-
+	vector <string> generateKeys();
+   
 
 
 };

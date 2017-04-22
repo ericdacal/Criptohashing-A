@@ -2,51 +2,138 @@
 #include <string>
 #include <fstream>
 #include <sstream>
-#include "BloomFilter_Quim.h"
+#include "basic_Bloom.h"
 #include "keyGenerator.h"
 using namespace std;
 
 
-int main () {
-    
-    int filterSize,numHashFunctions, keysNum, maxKeys, numFitxers;
-    cout << "Introdueix el tamany del filtre" << endl;
-    cin >> filterSize;
-    cout << "Introdueix el nombre de funcions de Hash" << endl;
-    cin >> numHashFunctions;
-    
-    cout << "Introdueix el nombre de fitxers de test a probar" << endl;
-    cin >> numFitxers;
-    keyGenerator generador(5,5);
-    generador.generateKeys();
-    
-    ifstream addFile("claus.txt");
-    string line;
-    getline(addFile,line);
-    istringstream iss(line);
-    
-    BloomFilter filter (filterSize,numHashFunctions,5, 40);
-    string key;
-    while (getline(addFile,key)) {
-        filter.addKey(key);
-    }
-    cout << "-----------------" << endl;
-    addFile.close();
-    for (int i = 1;i <= numFitxers;++i) {
-    	string file = "test";
-        file.append(to_string(i));
-        file.append(".txt");
-    	ifstream queryFile;
-    	queryFile.open(file);
-
-    	    while (getline(queryFile,key)) {
-    	        bool member = filter.queryKey(key);
-    	        if (member == false) cout << "key " << key << " is not in the set." << endl;
-    	        else cout << "key " << key << " maybe is in the set." << endl;
-    	    }
-    	    queryFile.close();
-    	    
-    }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+int main ()  {
+  
+    /*for(int i = 2; i <= 10; ++i) {
+      keyGenerator generador(500,i);
+      vector <string> keys = generador.generateKeys();
+      ofstream fitxer;
+      string fileName = "claus";
+      fileName.append(to_string(i)).append(".txt");
+      fitxer.open(fileName,ios::app);
+      for (int l = 0; l < 500;++l) {
+          fitxer << keys[l] << "\n";
+      }
+      fitxer.close();
+      
+      for(int j = 0; j < 4; ++j) {
+        int perc = j*33;
+          vector <string> percentKeys;
+          for (int h = 0;h < keys.size()*(perc/100);++h) {
+            percentKeys.push_back(keys[h]);
+          }
+          cout << i << " " << j << endl;
+          keyGenerator generador2(500-percentKeys.size(),i);
+          vector <string> others = generador.generateKeys();
+          ofstream fitxer;
+          string fileName = "tests";
+          fileName.append(to_string(i)).append(to_string(perc)).append(".txt");
+          fitxer.open(fileName,ios::app);
+          for (int y = 0; y < percentKeys.size();++y) {
+            fitxer << percentKeys[y] << "\n";
+          }
+          for (int z = 0;z < others.size();++z) {
+            fitxer << others[z] << "\n";
+          }
+          fitxer.close();
+      }*/
+      
+      
+      
+      
+      
+      
+
+      /*for(int j = 1; j < 500; j += 50) {
+        int filterSize = j;
+        for(int k = 1; k < 25; ++k) {
+          int numHashFunctions = k;
+          int numFitxers = 2;
+          basic_Bloom filter(numHashFunctions, filterSize);
+          string key;
+          ifstream addFile("claus.txt");
+          while (getline(addFile,key)) {
+              filter.insert(key);
+          }
+          addFile.close();
+          for (int l = 1;l <= numFitxers;++l) {
+            string file = "test";
+            file.append(to_string(l));
+            file.append(".txt");
+            ifstream queryFile;
+            queryFile.open(file);
+            int count = 0;
+            while (getline(queryFile,key)) {
+                bool member = filter.contains(key);
+                if (member == true) ++count;
+                //else cout << "key " << key << " maybe is in the set." << endl;
+            }
+            cout << i << "\t" << j << "\t" << k << "\t" << l << "\t" << count << "\t" << endl;
+            queryFile.close();
+            
+        }
+      }
+    }*/
+  } 
 }
+      
+      
+      
+      //int filterSize,numHashFunctions, keysNum, maxKeys, numFitxers;
+        
+        
+    //cout << "Introdueix el tamany del filtre" << endl;
+    //cin >> filterSize;
+    //cout << "Introdueix el nombre de funcions de Hash" << endl;
+    //cin >> numHashFunctions;
+    
+    //cout << "Introdueix el nombre de fitxers de test a probar" << endl;
+    //cin >> numFitxers;
+  
+    
+   
+    
+    
+    
+    //BloomFilter filter (filterSize,numHashFunctions,5, 40);
+  
+   
+    
+
+
+
