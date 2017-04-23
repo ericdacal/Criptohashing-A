@@ -2,9 +2,8 @@
 #include <string>
 #include <fstream>
 #include <sstream>
-#include "basic_Bloom.h"
+#include "couting_Bloom.h"
 #include "keyGenerator.h"
-#include "sha256.h"
 #include <set>
 using namespace std;
 
@@ -12,22 +11,21 @@ using namespace std;
 
 
 int main ()  {
-    
-    
+  
   cout << "Filter Size" << "\t" << "Num Hash Functions" << "\t" << "Key Size" << "\t" << "Keys Percentage" << "\t" << "False Positive Count" <<  endl;
   srand(time(NULL));
   for (int i = 500; i <= 10000; i += 50) {
     for (int j = 1;j <= 25;++j) {
       for (int k = 2;k <= 10;++k) {
        
-        basic_Bloom filter(i,j);
+        couting_Bloom filter(i,j);
         string key;
         string fileName = "claus";
         set <string> claus;
         fileName.append(to_string(k)).append(".txt");
         ifstream addFile(fileName);
         while (getline(addFile,key)) {
-            filter.insert(sha256(key));
+            filter.insert(key);
             claus.insert(key);
         }
         for (int l = 0;l < 4;++l) {
@@ -37,7 +35,7 @@ int main ()  {
            fileName.append(to_string(k)).append(to_string(perc)).append(".txt");
            ifstream queryFile(fileName);
            while (getline(queryFile,key)) {
-             bool member = filter.contains(sha256(key));
+             bool member = filter.contains(key);
              if (member) {
                if (claus.find(key) == claus.end()) ++contFalse;
              }

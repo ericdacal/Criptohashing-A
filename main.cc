@@ -1,4 +1,5 @@
 #include <iostream>
+#include <iostream>
 #include <string>
 #include <fstream>
 #include <sstream>
@@ -12,6 +13,7 @@ using namespace std;
 
 int main ()  {
   
+  cout << "Filter Size" << "\t" << "Num Hash Functions" << "\t" << "Key Size" << "\t" << "Keys Percentage" << "\t" << "False Positive Count" <<  endl;  
   srand(time(NULL));
   for (int i = 500; i <= 10000; i += 50) {
     for (int j = 1;j <= 25;++j) {

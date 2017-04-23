@@ -2,7 +2,7 @@
 #include <string>
 #include <fstream>
 #include <sstream>
-#include "basic_Bloom.h"
+#include "spectral_Bloom.h"
 #include "keyGenerator.h"
 #include "sha256.h"
 #include <set>
@@ -12,15 +12,14 @@ using namespace std;
 
 
 int main ()  {
-    
-    
+  
   cout << "Filter Size" << "\t" << "Num Hash Functions" << "\t" << "Key Size" << "\t" << "Keys Percentage" << "\t" << "False Positive Count" <<  endl;
   srand(time(NULL));
   for (int i = 500; i <= 10000; i += 50) {
     for (int j = 1;j <= 25;++j) {
       for (int k = 2;k <= 10;++k) {
        
-        basic_Bloom filter(i,j);
+        spectral_Bloom filter(i,j);
         string key;
         string fileName = "claus";
         set <string> claus;
