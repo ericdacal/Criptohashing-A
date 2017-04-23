@@ -1,10 +1,27 @@
-#include "basic_Bloom.h"
 
-class couting_Bloom: public basic_Bloom {
+using namespace std;
+
+
+class couting_Bloom {
+
 private:
-    std::vector<int> Bloom_filter; 
+    vector <int> filter;
+    int filterSize;
+    int hashFunctionsNum;
+    int maxNumKeys;
+    vector <int> primes;
+    int a1,a2,b1,b2;
+    int prime;
+
 public:
-     couting_Bloom(int num_hash, int Bloom_size);
-     void insert(std::string key);
-     void remove(std::string key);
+
+    couting_Bloom (int size, int numHash, int maxKeys);
+    void insert(string key);
+    bool contains(string key);
+    void createTwoHashFunctions();
+    void remove(string key);
+    vector <int> transformStringToInt(string key);
+
+
+
 };
