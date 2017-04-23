@@ -11,7 +11,7 @@ keyGenerator::keyGenerator (int numKeys, int keysSize) {
 }
 
 vector <string> keyGenerator::generateKeys() {
-	srand(time(NULL));
+	
 	for (int i = 0;i < numKeys;++i) {
 		string key;
 		for (int j = 0;j < keysSize;++j) {
