@@ -10,12 +10,12 @@ modular:
 	g++ -std=c++11 -o main_SHA main_SHA.cc basic_Bloom.cc keyGenerator.cc sha256.cc
 	
 modular2: 
-	g++ -std=c++11 -o main_C     main_Count.cc 	  couting_Bloom.cc keyGenerator.cc
+	g++ -std=c++11 -o main_C     main_Count.cc couting_Bloom.cc keyGenerator.cc
 	g++ -std=c++11 -o main_SHA_C main_SHACount.cc couting_Bloom.cc keyGenerator.cc sha256.cc
 
 	
 tar:
-	tar zcvf G01.tar.gz *.cc *.h claus* tests* README.txt Criptohashing-A.pdf Makefile 
+	tar zcvf G01.tar.gz *.cc *.h claus* tests* README.txt Criptohash.pdf Makefile 
 
 clean:
 	rm main main_C main_SHA main_SHA_C 

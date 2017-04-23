@@ -1,6 +1,8 @@
 #include <iostream>
 #include <string>
 #include <climits>
+#include <algorithm>
+#include <set>
 #include "couting_Bloom.h"
 
 couting_Bloom::couting_Bloom(int size, int numHash) {
@@ -29,7 +31,6 @@ vector <int> couting_Bloom::transformStringToInt(string key) {
     }
     valueHash2 += aux;
     valueHash2%filterSize;
-    //cout << valueHash1 << " " << valueHash2 << endl;
     vector <int> indexos = vector <int> (2);
     indexos[0] = valueHash1;
     indexos[1] = valueHash2;
@@ -41,10 +42,8 @@ vector <int> couting_Bloom::transformStringToInt(string key) {
 
 void couting_Bloom::insert (string key) {
     vector <int> representation = transformStringToInt(key);
-    //cout << representation[0] << " " << representation[1];
     for (int i = 0;i < hashFunctionsNum;++i) {
         int index = (representation[0] + (i*representation[1]))%filterSize;
-        //cout << "Index filtre insert " << index << endl;
         ++filter[index];
     }
 
@@ -52,10 +51,8 @@ void couting_Bloom::insert (string key) {
 
 bool couting_Bloom::contains(string key) {
     vector <int> representation = transformStringToInt(key);
-    //cout << representation[0] << " " << representation[1];
     for (int i = 0;i < hashFunctionsNum;++i) {
         int index = (representation[0] + (i*representation[1]))%filterSize;
-        //cout << "Index filtre contains " << index << endl;
         if (filter[index] == 0) return false;
     }
     return true;
@@ -65,35 +62,38 @@ bool couting_Bloom::contains(string key) {
 void couting_Bloom::remove(string key)
 {
     vector <int> representation = transformStringToInt(key);
-    //cout << representation[0] << " " << representation[1];
     for (int i = 0;i < hashFunctionsNum;++i) {
         int index = (representation[0] + (i*representation[1]))%filterSize;
-        //cout << "Index filtre contains " << index << endl;
         if (filter[index] > 0) --filter[index];
     }
 }
 
 
-int couting_Bloom::falseNeg(vector<string> keys, vector<string> erases) {
+int couting_Bloom::falseNeg(set<string> keys, vector<string> & erases) {
     
-    //cout << representation[0] << " " << representation[1];
     int cont = 0;
-    for(int k = 0; k < keys.size(); ++k) {
-        vector <int> representation = transformStringToInt(keys[k]);
-        for (int i = 0;i < hashFunctionsNum;++i) {
+    set <string>::iterator it = keys.begin();
+    while (it != keys.end()) {
+        string key = *it;
+        vector <int> representation = transformStringToInt(key);
+        int contAux = 0;
+        bool found = false;
+        for (int i = 0;i < hashFunctionsNum and not found;++i) {
             int index = (representation[0] + (i*representation[1]))%filterSize;
             if (filter[index] == 0) {
-                for(int h = 0; h < erases.size(); ++h) {
-                    if(keys[k] != erases[h]) ++cont;
+                for (int j = 0;j < erases.size();++j) {
+                    if (key != erases[j]) ++contAux;
+                }
+                if (contAux == erases.size()) {
+                    found = true;
+                    ++cont;
                 }
             }
+            
         }
-        
+        ++it;
     }
-    
-    
-    
-    
+    return cont;
 }
 
 

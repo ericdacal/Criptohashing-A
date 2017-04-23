@@ -1,4 +1,5 @@
 #include <vector>
+#include <set>
 using namespace std;
 
 
@@ -8,10 +9,6 @@ private:
     vector <int> filter;
     int filterSize;
     int hashFunctionsNum;
-    int maxNumKeys;
-    vector <int> primes;
-    int a1,a2,b1,b2;
-    int prime;
 
 public:
 
@@ -20,7 +17,7 @@ public:
     void insert(string key);
     bool contains(string key);
     void remove(string key);
-    int falseNeg(vector<string> keys, vector<string> erases);
+    int falseNeg(set<string> keys, vector<string>& erases);
 
 
 

@@ -32,7 +32,6 @@ vector <int> basic_Bloom::transformStringToInt(string key) {
     }
     valueHash2 += aux;
     valueHash2%filterSize;
-    //cout << valueHash1 << " " << valueHash2 << endl;
     vector <int> indexos = vector <int> (2);
     indexos[0] = valueHash1;
     indexos[1] = valueHash2;
@@ -43,10 +42,8 @@ vector <int> basic_Bloom::transformStringToInt(string key) {
 
 void basic_Bloom::insert (string key) {
     vector <int> representation = transformStringToInt(key);
-    //cout << representation[0] << " " << representation[1];
     for (int i = 0;i < hashFunctionsNum;++i) {
         int index = (representation[0] + (i*representation[1]))%filterSize;
-        //cout << "Index filtre insert " << index << endl;
         if (filter[index] == false) filter[index] = true;
     }
 
@@ -54,10 +51,8 @@ void basic_Bloom::insert (string key) {
 
 bool basic_Bloom::contains(string key) {
     vector <int> representation = transformStringToInt(key);
-    //cout << representation[0] << " " << representation[1];
     for (int i = 0;i < hashFunctionsNum;++i) {
         int index = (representation[0] + (i*representation[1]))%filterSize;
-        //cout << "Index filtre contains " << index << endl;
         if (filter[index] == false) return false;
     }
     return true;

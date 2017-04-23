@@ -16,7 +16,7 @@ int main ()  {
     
   cout << "Filter Size" << "\t" << "Num Hash Functions" << "\t" << "Key Size" << "\t" << "Keys Percentage" << "\t" << "False Positive Count" <<  endl;
   srand(time(NULL));
-  for (int i = 500; i <= 10000; i += 50) {
+  for (int i = 500; i <= 6000; i += 50) {
     for (int j = 1;j <= 25;++j) {
       for (int k = 2;k <= 10;++k) {
        
@@ -133,24 +133,7 @@ int main ()  {
 }
       
       
-      
-      //int filterSize,numHashFunctions, keysNum, maxKeys, numFitxers;
-        
-        
-    //cout << "Introdueix el tamany del filtre" << endl;
-    //cin >> filterSize;
-    //cout << "Introdueix el nombre de funcions de Hash" << endl;
-    //cin >> numHashFunctions;
-    
-    //cout << "Introdueix el nombre de fitxers de test a probar" << endl;
-    //cin >> numFitxers;
-  
-    
-   
-    
-    
-    
-    //BloomFilter filter (filterSize,numHashFunctions,5, 40);
+     
   
    
     
