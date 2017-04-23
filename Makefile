@@ -7,7 +7,7 @@ all: modular modular2 modular3
 
 modular: 
 	g++ -std=c++11 -o main     main.cc basic_Bloom.cc keyGenerator.cc
-	g++ -std=c++11 -o main_SHA main_SHA.cc couting_Bloom.cc keyGenerator.cc sha256.cc
+	g++ -std=c++11 -o main_SHA main_SHA.cc basic_Bloom.cc keyGenerator.cc sha256.cc
 	
 modular2: 
 	g++ -std=c++11 -o main_C     mainCount.cc couting_Bloom.cc keyGenerator.cc
@@ -21,4 +21,4 @@ tar:
 	tar zcvf G01.tar.gz *.cc *.h *.txt Makefile 
 
 clean:
-	rm main mainC mainS mainSHA mainSHA_C mainSHA_L
+	rm main mainC mainS mainSHA main_SHA_C main_SHA_L 
