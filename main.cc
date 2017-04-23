@@ -12,11 +12,12 @@ using namespace std;
 
 int main ()  {
   
-  for (int i = 50; i <= 10000; i += 50) {
+  srand(time(NULL));
+  for (int i = 500; i <= 10000; i += 50) {
     for (int j = 1;j <= 25;++j) {
-     
-      basic_Bloom filter(i,j,500);
       for (int k = 2;k <= 10;++k) {
+       
+        basic_Bloom filter(i,j);
         string key;
         string fileName = "claus";
         set <string> claus;
@@ -31,8 +32,7 @@ int main ()  {
            int contFalse = 0;
            fileName = "tests";
            fileName.append(to_string(k)).append(to_string(perc)).append(".txt");
-           ifstream queryFile;
-           queryFile.open(fileName);
+           ifstream queryFile(fileName);
            while (getline(queryFile,key)) {
              bool member = filter.contains(key);
              if (member) {
