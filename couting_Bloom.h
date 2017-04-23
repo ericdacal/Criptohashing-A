@@ -20,6 +20,7 @@ public:
     void insert(string key);
     bool contains(string key);
     void remove(string key);
+    int falseNeg(vector<string> keys, vector<string> erases);
 
 
 

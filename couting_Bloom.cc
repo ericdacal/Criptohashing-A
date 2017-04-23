@@ -74,3 +74,26 @@ void couting_Bloom::remove(string key)
 }
 
 
+int couting_Bloom::falseNeg(vector<string> keys, vector<string> erases) {
+    
+    //cout << representation[0] << " " << representation[1];
+    int cont = 0;
+    for(int k = 0; k < keys.size(); ++k) {
+        vector <int> representation = transformStringToInt(keys[k]);
+        for (int i = 0;i < hashFunctionsNum;++i) {
+            int index = (representation[0] + (i*representation[1]))%filterSize;
+            if (filter[index] == 0) {
+                for(int h = 0; h < erases.size(); ++h) {
+                    if(keys[k] != erases[h]) ++cont;
+                }
+            }
+        }
+        
+    }
+    
+    
+    
+    
+}
+
+
