@@ -1,4 +1,4 @@
-
+#include <vector>
 using namespace std;
 
 
@@ -15,12 +15,12 @@ private:
 
 public:
 
-    couting_Bloom (int size, int numHash, int maxKeys);
+    couting_Bloom (int size, int numHash);
+    vector <int> transformStringToInt(string key);
     void insert(string key);
     bool contains(string key);
-    void createTwoHashFunctions();
     void remove(string key);
-    vector <int> transformStringToInt(string key);
+
 
 
 

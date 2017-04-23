@@ -15,13 +15,13 @@ private:
 
 public:
 
-    spectral_Bloom (int size, int numHash, int maxKeys);
+    spectral_Bloom (int size, int numHash);
     void insert(string key);
     bool contains(string key);
-    void createTwoHashFunctions();
+    vector <int> transformStringToInt(string key);
     void remove(string key);
     int num_occurs(string item);
-    vector <int> transformStringToInt(string key);
+   
 
 
 
